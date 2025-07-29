@@ -1,10 +1,3 @@
-
-// import type { Votes } from '../../types/votes'; // Додано 'type'
-
-// import css from './MovieModal.module.css';
-
-
-
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Movie } from '../../types/movie';
@@ -53,10 +46,10 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
                     <h2>{movie.title}</h2>
                     <p>{movie.overview}</p>
                     <p>
-                        <strong>Дата виходу:</strong> {movie.release_date}
+                        <strong>Release Date:</strong> {movie.release_date}
                     </p>
                     <p>
-                        <strong>Рейтинг:</strong> {movie.vote_average}/10
+                        <strong>Rating:</strong> {movie.vote_average}/10
                     </p>
                 </div>
             </div>

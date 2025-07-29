@@ -3,5 +3,5 @@
 import styles from './Loader.module.css';
 
 export default function Loader() {
-    return <p className={styles.text}>Завантаження фільмів, будь ласка, зачекайте...</p>;
+    return <p className={styles.text}>Loading movies, please wait...</p>;
 }

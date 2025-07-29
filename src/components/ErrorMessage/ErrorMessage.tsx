@@ -5,5 +5,5 @@
 import styles from './ErrorMessage.module.css';
 
 export default function ErrorMessage() {
-    return <p className={styles.text}>Сталася помилка, будь ласка, спробуйте ще раз...</p>;
+    return <p className={styles.text}>There was an error, please try again...</p>;
 }
