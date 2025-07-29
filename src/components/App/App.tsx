@@ -10,16 +10,16 @@ import MovieModal from '../MovieModal/MovieModal';
 import styles from './App.module.css';
 
 export default function App() {
-    const [movies, setMovies] = useState<Movie[]>([]); // Список фільмів
-    const [isLoading, setIsLoading] = useState(false); // Стан завантаження
-    const [error, setError] = useState(false); // Стан помилки
-    const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null); // Вибраний фільм
+    const [movies, setMovies] = useState<Movie[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(false);
+    const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
     const handleSearch = async (query: string) => {
         try {
             setIsLoading(true);
             setError(false);
-            setMovies([]); // Очищаємо попередні результати
+            setMovies([]);
             
             const data = await fetchMovies(query);
             
@@ -29,19 +29,18 @@ export default function App() {
             
             setMovies(data.results);
         } catch (err) {
-            setError(true);
-            toast.error('Не вдалося завантажити фільми. Спробуйте ще раз.');
+            setError(true); // Тільки встановлюємо стан помилки
         } finally {
             setIsLoading(false);
         }
     };
 
     const handleSelectMovie = (movie: Movie) => {
-        setSelectedMovie(movie); // Встановлюємо вибраний фільм
+        setSelectedMovie(movie);
     };
 
     const handleCloseModal = () => {
-        setSelectedMovie(null); // Закриваємо модалку
+        setSelectedMovie(null);
     };
 
     return (
@@ -50,7 +49,7 @@ export default function App() {
             
             {isLoading && <Loader />}
             
-            {error && <ErrorMessage />}
+            {error && <ErrorMessage />} {/* Відображаємо компонент помилки */}
             
             {movies.length > 0 && !isLoading && !error && (
                 <MovieGrid movies={movies} onSelect={handleSelectMovie} />
