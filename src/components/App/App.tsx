@@ -15,7 +15,11 @@ export default function App() {
     const [error, setError] = useState(false);
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
-    const handleSearch = async (query: string) => {
+    const handleSearch = async (formData: FormData) => {
+        const query = formData.get('query')?.toString().trim() || '';
+
+
+        
         try {
             setIsLoading(true);
             setError(false);
@@ -29,11 +33,16 @@ export default function App() {
             
             setMovies(data.results);
         } catch (err) {
-            setError(true); // Тільки встановлюємо стан помилки
+            setError(true);
         } finally {
             setIsLoading(false);
         }
     };
+
+
+
+
+    
 
     const handleSelectMovie = (movie: Movie) => {
         setSelectedMovie(movie);
@@ -45,11 +54,11 @@ export default function App() {
 
     return (
         <div className={styles.container}>
-            <SearchBar onSubmit={handleSearch} />
+            <SearchBar action={handleSearch} />
             
             {isLoading && <Loader />}
             
-            {error && <ErrorMessage />} {/* Відображаємо компонент помилки */}
+            {error && <ErrorMessage />}
             
             {movies.length > 0 && !isLoading && !error && (
                 <MovieGrid movies={movies} onSelect={handleSelectMovie} />
