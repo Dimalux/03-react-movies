@@ -1,4 +1,4 @@
-import { FormEvent, useRef } from 'react';
+import { FormEvent } from 'react';
 import toast from 'react-hot-toast';
 import styles from './SearchBar.module.css';
 
@@ -7,8 +7,6 @@ interface SearchBarProps {
 }
 
 export default function SearchBar({ action }: SearchBarProps) {
-    const inputRef = useRef<HTMLInputElement>(null);
-
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const form = e.currentTarget;
@@ -22,10 +20,8 @@ export default function SearchBar({ action }: SearchBarProps) {
         
         action(formData);
         
-        // Очищаємо поле вводу
-        if (inputRef.current) {
-            inputRef.current.value = '';
-        }
+        // Очищаємо форму (включаючи поле вводу)
+        form.reset();
     };
 
     return (
@@ -41,7 +37,6 @@ export default function SearchBar({ action }: SearchBarProps) {
                 </a>
                 <form className={styles.form} onSubmit={handleSubmit}>
                     <input
-                        ref={inputRef}
                         className={styles.input}
                         type="text"
                         name="query"
@@ -56,4 +51,4 @@ export default function SearchBar({ action }: SearchBarProps) {
             </div>
         </header>
     );
-}
+}''
