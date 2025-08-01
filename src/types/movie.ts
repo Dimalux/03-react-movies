@@ -1,4 +1,3 @@
-
 export interface Movie {
     id: number;
     poster_path: string; // Шлях до постеру фільму
@@ -9,9 +8,7 @@ export interface Movie {
     vote_average: number; // Середній рейтинг
 }
 
-export interface MoviesResponse {
-    results: Movie[]; // Масив знайдених фільмів
-    total_pages: number; // Загальна кількість сторінок
-    total_results: number; // Загальна кількість результатів
-    page: number; // Поточна сторінка
-    }
+
+
+
+

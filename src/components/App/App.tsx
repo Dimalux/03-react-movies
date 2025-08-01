@@ -15,11 +15,7 @@ export default function App() {
     const [error, setError] = useState(false);
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
-    const handleSearch = async (formData: FormData) => {
-        const query = formData.get('query')?.toString().trim() || '';
-
-
-        
+    const handleSearch = async (query: string) => {
         try {
             setIsLoading(true);
             setError(false);
@@ -39,11 +35,6 @@ export default function App() {
         }
     };
 
-
-
-
-    
-
     const handleSelectMovie = (movie: Movie) => {
         setSelectedMovie(movie);
     };
@@ -54,7 +45,7 @@ export default function App() {
 
     return (
         <div className={styles.container}>
-            <SearchBar action={handleSearch} />
+            <SearchBar onSubmit={handleSearch} />
             
             {isLoading && <Loader />}
             
