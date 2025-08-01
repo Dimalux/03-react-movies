@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast'; // Додано імпорт Toaster
 import { fetchMovies } from '../../services/movieService';
 import { Movie } from '../../types/movie';
 import SearchBar from '../SearchBar/SearchBar';
@@ -45,6 +45,9 @@ export default function App() {
 
     return (
         <div className={styles.container}>
+            {/* Додано Toaster для відображення toast-повідомлень */}
+            <Toaster position="top-center" />
+            
             <SearchBar onSubmit={handleSearch} />
             
             {isLoading && <Loader />}
